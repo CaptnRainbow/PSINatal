@@ -100,3 +100,7 @@
 </body>
 
 </html>
+Notice: Undefined index: nome in C:\xampp\htdocs\TrabalhoM17e\menu.php on line 22
+Call Stack
+#	Time	Memory	Function	Location
+1	0.0011	359320	{main}( )	...\menu.php:0
