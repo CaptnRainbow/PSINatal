@@ -55,17 +55,29 @@
     
   <div class="content-wrapper">
     <div class="container-fluid">
-      
+     
 
       <div class="row">
-          
       </div>
-      
       
     </div>
     
-   
+            <?php
+              $servername = "localhost";
+                 $username = "root";
+                 $password = "";
+                 $dbname = "mod17";
 
+                 $sql = "SELECT MAX(`data_inicio`) FROM `ano_letivo`";
+                 $conn = new mysqli($servername,$username,$password,$dbname);
+                 $conn->set_charset('utf8');
+
+                 $result = $conn->query($sql);
+                 $registoresultado = $result->fetch_row();  
+                 $stringanoletivo = "". substr($registoresultado[0],0,4) . " - "  . intval(substr($registoresultado[0],0,4)+1);
+                 echo("<h1>Ano Letivo " . $stringanoletivo . "</h1><br/><br/><br/>");
+                 echo("Desativar / Apagar Disciplina: <form <input type='text' name='nomedisc' maxlength=50 size=50>");
+            ?>
   </div>
   
 

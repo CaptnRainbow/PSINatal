@@ -11,7 +11,7 @@
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <link href="css/sb-admin.css" rel="stylesheet">
-  
+
   <title>Gestão de Critérios de Avaliação</title>
   
 </head>
@@ -63,7 +63,26 @@
       
       
     </div>
-    
+        <?php
+                 $servername = "localhost";
+                 $username = "root";
+                 $password = "";
+                 $dbname = "mod17";
+
+                 $sql = "SELECT MAX(`data_inicio`) FROM `ano_letivo`";
+                 $conn = new mysqli($servername,$username,$password,$dbname);
+                 $conn->set_charset('utf8');
+
+                 $result = $conn->query($sql);
+                 $registoresultado = $result->fetch_row();  
+                 $stringanoletivo = "". substr($registoresultado[0],0,4) . " - "  . intval(substr($registoresultado[0],0,4)+1);
+                    echo("<h1>Ano Letivo " . $stringanoletivo . "</h1><br/><br/><br/>");
+                    echo("<table>");
+                        echo("<form action='submetercriterios.php' method='POST'>");
+                            echo("<tr><td>Departamento: </td><td></td></tr>");
+                        echo("</form>");
+                    echo("</table>");
+                ?>
    
 
   </div>
@@ -100,7 +119,3 @@
 </body>
 
 </html>
-Notice: Undefined index: nome in C:\xampp\htdocs\TrabalhoM17e\menu.php on line 22
-Call Stack
-#	Time	Memory	Function	Location
-1	0.0011	359320	{main}( )	...\menu.php:0
