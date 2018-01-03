@@ -23,14 +23,14 @@
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-            <span class="nav-link-text">Ações em Disciplinas</span>
+            <span class="nav-link-text">Menu</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMulti">
             <li>
               <a href="criteriospdisciplina.php">Enviar Critérios por Disciplina</a>
             </li>
             <li>
-              <a href="admindisciplina.php">Administração de Disciplinas</a>
+              <a href="admindept.php">Administração de Departamentos</a>
             </li>
           </ul>
         </li>
@@ -69,19 +69,21 @@
                  $password = "";
                  $dbname = "mod17";
 
-                 $sql = "SELECT MAX(`data_inicio`) FROM `ano_letivo`";
+                 $sql = "SELECT `data_inicio`, `data_fim` FROM `ano_letivo` ORDER BY `ano_letivo_pk` DESC LIMIT 1";
                  $conn = new mysqli($servername,$username,$password,$dbname);
                  $conn->set_charset('utf8');
 
                  $result = $conn->query($sql);
                  $registoresultado = $result->fetch_row();  
-                 $stringanoletivo = "". substr($registoresultado[0],0,4) . " - "  . intval(substr($registoresultado[0],0,4)+1);
-                    echo("<h1>Ano Letivo " . $stringanoletivo . "</h1><br/><br/><br/>");
-                    echo("<table>");
-                        echo("<form action='submetercriterios.php' method='POST'>");
-                            echo("<tr><td>Departamento: </td><td></td></tr>");
-                        echo("</form>");
-                    echo("</table>");
+                 $stringanoletivo = "". substr($registoresultado[0],0,4) . " - "  . substr($registoresultado[1],0,4);
+                 echo("<h1>Ano Letivo " . $stringanoletivo . "</h1><br/><br/><br/>");
+                 $sql = "SELECT * FROM `departamento`";
+                 $result = $conn->query($sql);
+                 $registoresultado = $conn->fetch_assoc($sql);
+                 echo("<form action='filterbydept.php' method='POST'>"
+                         . "<table>"
+                            . ""
+                         . "</table>");
                 ?>
    
 

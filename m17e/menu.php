@@ -23,14 +23,14 @@
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-            <span class="nav-link-text">Ações em Disciplinas</span>
+            <span class="nav-link-text">Menu</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMulti">
             <li>
               <a href="criteriospdisciplina.php">Enviar Critérios por Disciplina</a>
-            </li>
+            </li>    <!-- Adicionar o Resto do Menu -->
             <li>
-              <a href="admindisciplina.php">Administração de Disciplinas</a>
+              <a href="admindept.php">Administração de Departamentos</a>
             </li>
           </ul>
         </li>
