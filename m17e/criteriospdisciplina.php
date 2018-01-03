@@ -1,6 +1,12 @@
 
 <!DOCTYPE html>
 <html lang="en">
+    
+    <style>
+        #combo{
+         width:150px;   
+        }
+    </style>
 
 <head>
   <meta charset="utf-8">
@@ -64,6 +70,7 @@
       
     </div>
         <?php
+        
                  $servername = "localhost";
                  $username = "root";
                  $password = "";
@@ -71,19 +78,86 @@
 
                  $sql = "SELECT `data_inicio`, `data_fim` FROM `ano_letivo` ORDER BY `ano_letivo_pk` DESC LIMIT 1";
                  $conn = new mysqli($servername,$username,$password,$dbname);
-                 $conn->set_charset('utf8');
+                 //$conn->set_charset('utf8');
 
                  $result = $conn->query($sql);
-                 $registoresultado = $result->fetch_row();  
+                 $registoresultado = $result->fetch_array();
                  $stringanoletivo = "". substr($registoresultado[0],0,4) . " - "  . substr($registoresultado[1],0,4);
+                 
                  echo("<h1>Ano Letivo " . $stringanoletivo . "</h1><br/><br/><br/>");
-                 $sql = "SELECT * FROM `departamento`";
+                 
+                 
+       /*          $sql = "SELECT * FROM departamento";
                  $result = $conn->query($sql);
-                 $registoresultado = $conn->fetch_assoc($sql);
-                 echo("<form action='filterbydept.php' method='POST'>"
-                         . "<table>"
-                            . ""
-                         . "</table>");
+                 $departResultado = $result->fetch_assoc();*/
+                 
+                 $sqlCombo = "select departamento_pk, nome from departamento";
+                 $resultCombo = $conn->query($sqlCombo);
+                 $preencheCombo = $resultCombo->fetch_assoc();
+                 
+                 
+                 
+                 
+                 if($resultCombo->num_rows<=0) {
+                     
+                    echo("nao ha departamentos"); // colocar em popup
+                 } else {
+                     
+                 /*   echo("<form action='filterbydept.php' method='POST'>"
+                            . "<table>"
+                                . "<tr><td>"
+                            . "</table>"); */
+                    
+                     
+                     echo $resultCombo->num_rows; echo "<br>";
+                     echo $preencheCombo["nome"]; echo "<br>";
+                     echo $preencheCombo["departamento_pk"]; echo "<br>";
+                     echo "<br>";
+
+           
+                    
+                  /*   echo($preencheCombo["nome"]);
+                     echo("<br>");
+                     echo($resultCombo->num_rows);
+                     echo("<br>"); */
+                    
+                    echo(" <select id='combo'> ");
+               /*    while($preencheCombo) {
+                        
+                       echo(" <option value=" . $preencheCombo["departamento_pk"] ." > ". $preencheCombo["nome"] ."   </option> ");
+                /*       echo($preencheCombo["departamento_pk"]);
+                       echo("<br>");
+                       echo($preencheCombo["nome"]);
+                       echo("<br>"); */
+                  // }
+                       
+                    
+                    
+                 // preenche apenas o mais recente infinitamente */
+                    
+                    //$depart = array("DPT1","DPT2","DPT3");
+                    
+                    
+                    
+                    
+                    
+                    
+                    foreach($preencheCombo as $departamento) {
+                        
+                        echo(" <option value='1' > ". $departamento ." </option> ");
+                        //$departamento[departamento_pk]  $departamento[nome]
+                    } 
+                    
+
+                    
+                    
+                    echo(" </select> ");
+                    
+                    
+                     
+                 }
+                 
+        
                 ?>
    
 
