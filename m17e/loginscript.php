@@ -19,7 +19,7 @@
     
     if($result->num_rows>0){
         setcookie("name",$registoresultado["nome"]);
-        header("Location: http://" .$_SERVER['HTTP_HOST']. "/TrabalhoM17e/menu.php");
+        header("Location: http://" .$_SERVER['HTTP_HOST']. "/m17e/menu.php");
     } else {
         $mensagem = "Utilizador ou Palavra-Passe errada! Tente outra vez.";
         echo("<script>alert('$mensagem');</script>");
