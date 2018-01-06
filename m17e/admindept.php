@@ -58,11 +58,9 @@
 
       <div class="row">
       </div>
-      
-    </div>
-    
-            <?php
-              $servername = "localhost";
+        
+     <?php
+     $servername = "localhost";
                  $username = "root";
                  $password = "";
                  $dbname = "mod17";
@@ -75,14 +73,86 @@
                  $registoresultado = $result->fetch_row();  
                  $stringanoletivo = "". substr($registoresultado[0],0,4) . " - "  . substr($registoresultado[1],0,4);
                  echo("<h1>Ano Letivo " . $stringanoletivo . "</h1><br/><br/><br/>");
-                 echo("<div>");
+     ?>
+          
+    <div class='btn-group' data-toggle='buttons'>
+        <form id="form-id" action="opsdept.php" method="POST">
+            <table>
+                <tr>
+                    <td>
+                        <label class="btn btn-dark">
+                            <input type="radio" name="opts" value="insert"> Inserir
+                        </label>
+                    </td>
+                    <td>
+                        <label class="btn btn-dark">
+                            <input type="radio" name="opts" value="update"> Atualizar
+                        </label>
+                    </td>
+                    <td>
+                        <label class="btn btn-dark">
+                            <input type="radio" name="opts" value="delete"> Apagar
+                        </label>
+                    </td>
+                </tr>
+            </table>
+            <!--<input name="btSubmit" type="submit" class="btn btn-dark btn-lg btn-block" value="Escolher"/>-->
+            <button onclick="document.getElementById('form-id').submit();">submit</button>
+        </form>
+</div>
+      
+    </div>
+    
+            <?php
+            /*  $servername = "localhost";
+                 $username = "root";
+                 $password = "";
+                 $dbname = "mod17";
+
+                 $sql = "SELECT `data_inicio`, `data_fim` FROM `ano_letivo` ORDER BY `ano_letivo_pk` DESC LIMIT 1";
+                 $conn = new mysqli($servername,$username,$password,$dbname);
+                 $conn->set_charset('utf8');
+
+                 $result = $conn->query($sql);
+                 $registoresultado = $result->fetch_row();  
+                 $stringanoletivo = "". substr($registoresultado[0],0,4) . " - "  . substr($registoresultado[1],0,4);
+                 echo("<h1>Ano Letivo " . $stringanoletivo . "</h1><br/><br/><br/>");
+                 
+                 echo("<div class='btn-group' data-toggle='buttons'>");
+                 
                     echo("<form action='opsdept.php' method='POST'>"
                            ."<table>"
-                               . "<tr><td width='300'><button style='width:100%' type=button class='btn btn-dark'>Apagar</button></td><td width='300'><button style='width:100%' type=button class='btn btn-dark'>Editar</button></td><td width='300'><button style='width:100%' type=button class='btn btn-dark'>Inserir</button></td></tr>"
+                               . "<tr><td width='300'> <input style='width:100%' type='submit' class='btn btn-dark' name='delete' value='Apagar' />   </td>"
+                               . "<td width='300'> <input style='width:100%' type='submit' class='btn btn-dark' name='insert' value='Inserir' />   </td>"
+                               . "<td width='300'> <input style='width:100%' type='submit' class='btn btn-dark' name='update' value='Atualizar' />   </td></tr>"
+                               //<input type="submit" class="button" name="insert" value="insert" />
+                               //<button style='width:100%' type=button class='btn btn-dark'>Apagar</button>
+                            
+                            . "<label class='btn btn-dark'>"
+                            . "<tr><td> <input type='radio' name='opts' value='insert' checked> Inserir</td>"
+                            . "<td> <input type='radio' name='opts' value='update'> Atualizar</td>"
+                            . "<td> <input type='radio' name='opts' value='delete'>  Apagar</td>"
+                            . "</label>"
+                            . "</tr>"
+                          // . "<tr> <td> <input name='btop' type='submit' class='btn btn-dark btn-lg btn-block' value='Escolher' /> </td> </tr>"
+                            
+                               
+  /*<label class="btn btn-primary active">
+    <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)
+  </label><label class="btn btn-primary"> <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+  </label>
+</div>
+                            
                            . "</table>");
+                    echo("<button name='btop' type='submit' class='btn btn-dark btn-lg btn-block'>Escolher</button>");
                     echo("</form>");
-                 echo("</div>")
-            ?>
+                 echo("</div>");
+           */ ?>
   </div>
   
 

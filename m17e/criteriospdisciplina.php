@@ -99,7 +99,7 @@
                                         while($row = $resultCombo->fetch_array(MYSQLI_ASSOC)){
                                             $preencheCombo[] = $row;
                                         } 
-                                        echo("<select name='combodept'>");
+                                        echo("<select id='combo' name='combodept'>");
                                         for($i=0; $i < count($preencheCombo); $i++){
                                             echo("<option value='" . $preencheCombo[$i]["departamento_pk"] . "'> ". $preencheCombo[$i]["nome"] ." </option> ");
                                         }
@@ -107,23 +107,29 @@
                                     echo("</td>");
                                     echo("<td><input type='submit' value='Filtrar'></td></tr>"
                                  . "</table></form>");
-                     }elseif(isset($_POST['combodept'])){
+                     }
+                     
+                     if(isset($_POST['combodept'])){
                             echo("<form method='POST'>"
                                    . "<table>"
                                        . "<tr><td>");
-                                            $sqlCombo = "SELECT `nivel`.`nivel_pk`, `nivel`.`nome` FROM `departamento` JOIN ";
-                                            $resultCombo = $conn->query($sqlCombo);
+                                            $sqlCombo1 = "SELECT `nivel`.`nivel_pk`, `nivel`.`nome` FROM `nivel` JOIN curso.nivel_fk on nivel.nivel_pk, JOIN tipo.tipo_pk on curso.tipo_fk, JOIN curso_disciplina.curso_fk_pk on curso.curso_pk, JOIN disciplina.disciplina_pk on curso_disciplina.disciplina_fk_pk, join departamento.departamento_pk on disciplina.departamento_fk ";
+                                            $resultCombo = $conn->query($sqlCombo1);
+                                            
                                             if($resultCombo->num_rows<=0) {
                                                echo("<script>alert('Não existem Departamentos!');</script>");
                                             }
+                                            
                                            $preencheCombo = array();
                                            while($row = $resultCombo->fetch_array(MYSQLI_ASSOC)){
                                                $preencheCombo[] = $row;
                                            } 
-                                           echo("<select id='combo'>");
+                                           
+                                           echo("<select name='combonivel' id='combo'>");
                                            for($i=0; $i < count($preencheCombo); $i++){
-                                               echo("<option value='" . $preencheCombo[$i]["departamento_pk"] . "'> ". $preencheCombo[$i]["nome"] ." </option> ");
+                                               echo("<option value='" . $preencheCombo[$i]["nivel_pk"] . "'> ". $preencheCombo[$i]["nome"] ." </option> ");
                                            }
+                                           
                                            echo(" </select> ");
                                        echo("</td>");
                                        echo("<td><input type='submit' value='Filtrar'></td></tr>"
