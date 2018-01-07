@@ -27,6 +27,7 @@
     
     $selectedRadio = $_POST["opts"];
     
+    
     if($selectedRadio == "insert") {
         
         echo("<form method='POST'>");
@@ -105,6 +106,8 @@
         
     }
     
+     
+     
         if(isset($_POST['btupd'])) {
             
             $sql = "select * from departamento where departamento_pk = '". $_POST['comboDept'] ."'";
@@ -115,23 +118,49 @@
                 echo("<script>alert('Não existem coordenadores!');</script>");   
             }
     
-            $preencheUpd= $result->fetch_array();
+           $preencheUpd= $result->fetch_array();
             
             echo("<form method='POST'");
                 echo("<table>");
-                    echo("<tr><td>Sigla: <input type='text' name='sigla' placeholder =".$preencheUpd['departamento_pk']."  > </td></tr>");
-                    echo("<tr><td>Nome: <input type='text' name='nome' placeholder =".$preencheUpd['nome']."> </td></tr>  ");
+                    echo("<tr><td>Sigla: <input type='text' name='sigla' value ='".$preencheUpd['departamento_pk']."' disabled > </td></tr>");
+                    echo("<tr><td>Nome: <input type='text' name='nome' value ='".$preencheUpd['nome']."'> </td></tr>  ");
                     echo("<tr><td>");
-                    echo("Coordenador do departamento: <select name='coord'>");
+                    echo("Coordenador do departamento: <select name='coord' value='".$preencheUpd['coordenador_fk']   ."'>");
                     for($i=0; $i < count($preencheUt); $i++){
                         echo("<option value='" . $preencheUt[$i]['utilizador_pk'] . "'> ". $preencheUt[$i]['nome'] ." </option> ");
                     }
                     echo(" </select> </td></tr> ");
-                    echo("<tr><td>Observações: <input type='text' name='obs' placeholder=".$preencheUpd['obs']."> </td></tr>");
+                    echo("<tr><td>Observações: <input type='text' name='obs' value='".$preencheUpd['obs']."'> </td></tr>");
+                echo("</table>");
+                echo("<input type='submit' name='btupd1' value='Atualizar'/>");
+            echo("</form>");
     } 
             
     
-    
+    if(isset($_POST["btupd1"])) {
+        
+        $sql = "update departamento "
+                . "set nome ='".$_POST['nome']."', "
+                . "coordenador_fk =".$_POST['coord'].", "
+                . "obs = '".$_POST['obs']."' "
+                . "where departamento_pk = '".$_POST['sigla']."'";
+        
+        $result = $conn->query($sql);
+        
+        if($result === true) {
+            echo("<script>alert('Atualizado com sucesso com sucesso!');</script>");
+            echo($preencheUpd['departamento_pk']);
+            echo($sql); echo("<br>");
+            echo($conn->error); echo("<br>");
+            echo($_POST['sigla']); echo("<br>");
+            echo($_POST['nome']); echo("<br>");
+        } else {
+            echo("<script>alert('Nao foi');</script>");
+            echo($sql); echo("<br>");
+            echo($conn->error);
+        }
+        
+    }
     
     
         
