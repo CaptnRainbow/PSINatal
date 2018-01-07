@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/xampp/htdocs/m17e/admindept.php</file>
             <file>file:/C:/xampp/htdocs/m17e/opsdept.php</file>
+            <file>file:/C:/xampp/htdocs/m17e/criteriospdisciplina.php</file>
+            <file>file:/C:/xampp/htdocs/m17e/menu.php</file>
             <file>file:/C:/xampp/htdocs/m17e/loginscript.php</file>
         </group>
     </open-files>

@@ -20,20 +20,84 @@
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-            <span class="nav-link-text">Menu</span>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Criterios">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion1">
+            <span class="nav-link-text">Critérios de Avaliação</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMulti">
-            <li>
-              <a href="criteriospdisciplina.php">Enviar Critérios por Disciplina</a>
+             <li>
+              <a href="">Ver enviados</a>
             </li>
             <li>
-              <a href="admindept.php">Administração de Departamentos</a>
+              <a href="">Ver em falta</a>
+            </li>
+            <li>
+              <a href="criteriospdisciplina.php" style="color:green">Enviar Critérios por Disciplina</a>
+            </li>    
+            <li>
+              <a href="">Enviar por departamento</a> <!-- <a href="admindept.php">Administração de Departamentos</a> -->
             </li>
           </ul>
         </li>
+        
+           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+            <span class="nav-link-text">Administração</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseComponents">
+            <li>
+              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Tabelas</a>
+              <ul class="sidenav-third-level collapse" id="collapseMulti2">
+                <li>
+                  <a href="">Utilizador</a>
+                </li>
+                 <li>
+                  <a href="admindept.php" style="color:green">Departamento</a>
+                </li>
+                 <li>
+                  <a href="">Nivel de ensino</a>
+                </li>
+                 <li>
+                  <a href="">Tipo de curso</a>
+                </li>
+                 <li>
+                  <a href="">Disciplina</a>
+                </li>
+                 <li>
+                  <a href="">Curso</a>
+                </li>
+                 <li>
+                  <a href="">Cursos por ano letivo</a>
+                </li>
+                 <li>
+                  <a href="">Disciplinas por curso</a>
+                </li>
+                 <li>
+                  <a href="">Ano Letivo</a>
+                </li>
+               
+          </ul>
+           </li>
       </ul>
+       
+        </li>
+   
+         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Links">
+          <a class="nav-link" href="">
+            <span class="nav-link-text">Definir parâmetros adicionais</span>
+          </a>
+             <a class="nav-link" href="">
+            <span class="nav-link-text">Enviar email</span>
+          </a>
+        </li>
+        
+        
+ 
+        
+      </ul>
+        
+        
+        
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
           <a class="nav-link text-center" id="sidenavToggler">
@@ -97,7 +161,7 @@
                 </tr>
             </table>
             <!--<input name="btSubmit" type="submit" class="btn btn-dark btn-lg btn-block" value="Escolher"/>-->
-            <button onclick="document.getElementById('form-id').submit();">submit</button>
+            <button onclick="document.getElementById('form-id').submit();">Seguinte</button>
         </form>
 </div>
       
