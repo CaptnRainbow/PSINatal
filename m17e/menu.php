@@ -33,7 +33,7 @@
               <a href="">Ver em falta</a>
             </li>
             <li>
-              <a href="criteriospdisciplina.php" style="color:green">Enviar Critérios por Disciplina</a>
+              <a href="criteriospdisciplina1.php" style="color:green">Enviar Critérios por Disciplina</a>
             </li>    
             <li>
               <a href="">Enviar por departamento</a> <!-- <a href="admindept.php">Administração de Departamentos</a> -->

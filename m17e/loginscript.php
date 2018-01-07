@@ -18,6 +18,7 @@
     $registoresultado = $result->fetch_assoc();
     
     if($result->num_rows>0){
+        setcookie("userpk",$registoresultado["utilizador_pk"]);
         setcookie("name",$registoresultado["nome"]);
         header("Location: http://" .$_SERVER['HTTP_HOST']. "/m17e/menu.php");
     } else {

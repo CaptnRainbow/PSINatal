@@ -1,6 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
+    
+    <style>
+        #combo{
+         width:150px;   
+        }
+    </style>
 
 <head>
   <meta charset="utf-8">
@@ -11,7 +16,7 @@
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <link href="css/sb-admin.css" rel="stylesheet">
-  
+
   <title>Gestão de Critérios de Avaliação</title>
   
 </head>
@@ -23,14 +28,14 @@
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-            <span class="nav-link-text">Ações em Disciplinas</span>
+            <span class="nav-link-text">Menu</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMulti">
             <li>
-              <a href="criteriospdisciplina.php">Enviar Critérios por Disciplina</a>
+              <a href="criteriospdisciplina1.php">Enviar Critérios por Disciplina</a>
             </li>
             <li>
-              <a href="admindisciplina.php">Administração de Disciplinas</a>
+              <a href="admindept.php">Administração de Departamentos</a>
             </li>
           </ul>
         </li>
@@ -55,29 +60,45 @@
     
   <div class="content-wrapper">
     <div class="container-fluid">
-     
+      
 
       <div class="row">
+          
       </div>
       
+      
     </div>
-    
-            <?php
-              $servername = "localhost";
+        <?php
+        
+                 $servername = "localhost";
                  $username = "root";
                  $password = "";
                  $dbname = "mod17";
 
-                 $sql = "SELECT MAX(`data_inicio`) FROM `ano_letivo`";
+                 $sql = "SELECT `data_inicio`, `data_fim` FROM `ano_letivo` ORDER BY `ano_letivo_pk` DESC LIMIT 1";
                  $conn = new mysqli($servername,$username,$password,$dbname);
+                 //$conn->set_charset('utf8');
                  $conn->set_charset('utf8');
-
                  $result = $conn->query($sql);
-                 $registoresultado = $result->fetch_row();  
-                 $stringanoletivo = "". substr($registoresultado[0],0,4) . " - "  . intval(substr($registoresultado[0],0,4)+1);
+                 $registoresultado = $result->fetch_array();
+                 $stringanoletivo = "". substr($registoresultado[0],0,4) . "-"  . substr($registoresultado[1],0,4);
+                 setcookie("anoletivocurr",$stringanoletivo);
                  echo("<h1>Ano Letivo " . $stringanoletivo . "</h1><br/><br/><br/>");
-                 echo("Desativar / Apagar Disciplina: <form <input type='text' name='nomedisc' maxlength=50 size=50>");
-            ?>
+                 
+
+                 $sqlEnvio = "SELECT `curso_disciplina`.`disciplina_fk_pk`, `disciplina`.`nome` FROM `curso_disciplina` JOIN `curso` ON `curso`.`curso_pk`=`curso_disciplina`.`curso_fk_pk` JOIN `nivel` ON `curso`.`nivel_fk`=`nivel`.`nivel_pk` JOIN `tipo` ON `curso`.`tipo_fk`=`tipo`.`tipo_pk` JOIN `disciplina` ON `curso_disciplina`.`disciplina_fk_pk`=`disciplina`.`disciplina_pk` JOIN `departamento` ON `disciplina`.`departamento_fk`=`departamento`.`departamento_pk` WHERE `nivel`.`nivel_pk` = '". $_COOKIE['nivel']."' AND `departamento`.`departamento_pk` = '". $_COOKIE['departamento']."' AND  `tipo`.`tipo_pk` = '". $_COOKIE['tipo']."' AND `curso_disciplina`.`curso_fk_pk` = '". $_COOKIE['curso']."' AND `disciplina`.`ativo`=1 GROUP BY `disciplina`.`nome` ";
+                 if(isset($_POST['fileToUpload'])){
+                     setcookie("filename",$_POST['fileToUpload']);
+                     header("Location: http://" .$_SERVER['HTTP_HOST']. "/m17e/criteriospdisciplina6.php");
+                 }else{     
+                    echo("<form action='receiver.php' method='post' enctype='multipart/form-data'>Selecionar Ficheiro para Enviar:<br>"
+                            ."<input type='file' name='file' id='file'>"
+                            ."<input type='submit' value='Enviar Ficheiro' name='submit'></form>");
+                     }
+                     
+                ?>
+   
+
   </div>
   
 
